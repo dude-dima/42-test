@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from models import User
 
 def contact_view(request):
+    ### Just for storing data into database
     #u = User()
     #u.name = "Dmitry"
     #u.surname = "Razumov"
@@ -11,7 +12,7 @@ def contact_view(request):
     #u.contacts = "380500000000"
     #u.save()
     try:
-        u = User.objects.get(name = "Dmitry")
+        u = User.objects.get(pk=1)
     except:
         u = None
     return render_to_response('contacts.html', {'user':u})
