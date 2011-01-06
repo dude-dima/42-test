@@ -1,7 +1,7 @@
 from django.template import Template, Context
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from models import User
+from models import User, Request
 
 def contact_view(request):
     ### Just for storing data into database
@@ -16,3 +16,10 @@ def contact_view(request):
     except:
         u = None
     return render_to_response('contacts.html', {'user':u})
+
+def request_view(request):
+    try:
+        r = Request.objects.all()[:10]
+    except:
+        r = None
+    return render_to_response('requests.html', {'requests':r})

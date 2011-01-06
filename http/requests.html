@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>10 First Requests</title>
+</head>
+<body>
+{% block content %}
+	{% if requests %}
+		{% for request in requests %}
+				{{ request.date }} <br/> {{ request.request }} <br/><br/><br/>
+		{% endfor %}
+	{% else %}
+		No requests found.
+	{% endif %}
+{% endblock%}
+</body>
+</html>

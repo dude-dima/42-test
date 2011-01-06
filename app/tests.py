@@ -20,3 +20,10 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(u.bio, user.bio)
         self.failUnlessEqual(u.contacts, user.contacts)
         
+        # A response
+        response = self.client.get('/test42/requests/')
+        # Check response status
+        self.failUnlessEqual(response.status_code, 200)
+        # Check if used right template
+        self.assertTemplateUsed(response, 'requests.html', msg_prefix='')
+        
