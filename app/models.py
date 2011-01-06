@@ -16,3 +16,12 @@ class User(models.Model):
     
     class Meta:
         db_table = 'users'
+        
+
+class Request(models.Model):
+    """Request"""
+    date = models.DateTimeField(null=True, blank=True, auto_now=True)
+    request = models.TextField()
+    
+    class Meta:
+        db_table = 'requests'

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+	<object pk="1" model="app.user">
+		<field type="CharField" name="name">Dmitry</field>
+		<field type="CharField" name="surname">Razumov</field>
+		<field type="TextField" name="bio">Some bio</field>
+		<field type="TextField" name="contacts">380500000000</field>
+	</object>
+</django-objects>
