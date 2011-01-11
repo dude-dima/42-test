@@ -27,3 +27,9 @@ class SimpleTest(TestCase):
         # Check if used right template
         self.assertTemplateUsed(response, 'requests.html', msg_prefix='')
         
+        # A response
+        response = self.client.get('/test42/main/')
+        # Check if context contains project settings
+        self.failUnlessEqual(response.context['settings'].SECRET_KEY, \
+            '160-wua)ph_%rb16rrypkm8%%^)oj^rggnts#e8)8$c0(@httn')
+        

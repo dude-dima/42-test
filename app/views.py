@@ -1,4 +1,4 @@
-from django.template import Template, Context
+from django.template import Template, Context, RequestContext
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from models import User, Request
@@ -15,7 +15,8 @@ def contact_view(request):
         u = User.objects.get(pk=1)
     except:
         u = None
-    return render_to_response('contacts.html', {'user':u})
+    return render_to_response('contacts.html', {'user':u}, \
+                              context_instance=RequestContext(request))
 
 def request_view(request):
     try:
