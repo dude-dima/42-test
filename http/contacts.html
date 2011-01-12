@@ -1,11 +1,11 @@
-<html>
-<head>
-<title>Contacts</title>
-</head>
-<body>
-{% block content %}
-	{% if user %}
-		{% for name, value in user.get_data %}
+{% include "header.html" %}
+{% block "content" %}
+	{% include "menu.html" %}
+	{% if error %}
+		<div class='error'>{{ error }}</div>
+	{% endif %}
+	{% if customer %}
+		{% for name, value in customer.get_data %}
 			{% if value %}
 				{{ name }} --> {{ value }} <br/>
 			{% endif %}
@@ -13,6 +13,5 @@
 	{% else %}
 		No data found.
 	{% endif %}
-{% endblock%}
-</body>
-</html>
+{% endblock %}
+{% include "footer.html" %}
