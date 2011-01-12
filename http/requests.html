@@ -1,9 +1,9 @@
-<html>
-<head>
-<title>10 First Requests</title>
-</head>
-<body>
-{% block content %}
+{% include "header.html" %}
+{% block "content" %}
+	{% include "menu.html" %}
+	{% if error %}
+		<div class='error'>{{ error }}</div>
+	{% endif %}
 	{% if requests %}
 		{% for request in requests %}
 				{{ request.date }} <br/> {{ request.request }} <br/><br/><br/>
@@ -11,6 +11,5 @@
 	{% else %}
 		No requests found.
 	{% endif %}
-{% endblock%}
-</body>
-</html>
+{% endblock %}
+{% include "footer.html" %}

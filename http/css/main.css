@@ -1,0 +1,51 @@
+.capt {
+		padding-top: 0.5em;
+        font-size: 16pt;
+        font-weight: bold;
+}
+
+div.hr {
+   height: 0px;
+   width: 100%;
+   border-bottom: 1px solid black;
+   margin-top: 2pt;
+   margin-bottom: 2pt;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+.semivisible {
+	color: #AFAFAF; 
+	font-size: 8pt;
+}
+
+table#heading {
+	width: 100%
+}
+
+table.menu {
+	background-color: #CFCFCF;
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+a.simple:LINK {
+	color: #07568d;
+}
+
+a.simple:VISITED {
+	color: #07568d;
+}
+
+td.menu-item {
+	text-align: center;
+	padding: 2pt;
+}
+
+td.menu-selected {
+	background-color: #fcb040;
+}

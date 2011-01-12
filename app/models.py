@@ -1,11 +1,11 @@
 from django.db import models
 
-class User(models.Model):
-    """User"""
-    name = models.CharField(null=True, max_length=250)
-    surname = models.CharField(null=True, max_length=250)
-    bio = models.TextField(null=True, max_length=250)
-    contacts = models.TextField(null=True, max_length=250)
+class Customer(models.Model):
+    """Customer"""
+    name = models.CharField(null=True, max_length=15)
+    surname = models.CharField(null=True, max_length=15)
+    contacts = models.CharField(null=True, max_length=15)
+    bio = models.TextField(null=True, max_length=250)    
     
     def get_data(self):
         return [(field.name, field.value_to_string(self))\

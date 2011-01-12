@@ -1,7 +1,10 @@
-from django.template import Template, Context, RequestContext
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from models import User, Request
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from models import Customer, Request
+from forms import CustomerForm
 
 def contact_view(request):
     ### Just for storing data into database
@@ -11,16 +14,50 @@ def contact_view(request):
     #u.bio = "Some bio"
     #u.contacts = "380500000000"
     #u.save()
+    c = {}
+    c['user'] = request.user
+    c['m_contacts'] = 'menu-selected'
     try:
-        u = User.objects.get(pk=1)
+        c['customer'] = Customer.objects.get(pk=1)
     except:
-        u = None
-    return render_to_response('contacts.html', {'user':u}, \
+        pass
+    return render_to_response('contacts.html', c, 
                               context_instance=RequestContext(request))
 
 def request_view(request):
+    c = {}
+    c['user'] = request.user
+    c['m_requests'] = 'menu-selected'
     try:
-        r = Request.objects.all()[:10]
+        c['requests'] = Request.objects.all()[:10]
     except:
-        r = None
-    return render_to_response('requests.html', {'requests':r})
+        pass
+    return render_to_response('requests.html', c)
+
+@login_required
+def edit_view(request):
+    c = {}
+    c['user'] = request.user
+    c['m_edit'] = 'menu-selected'
+    if request.method == 'POST': # If the form has been submitted...
+        form = CustomerForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            customer = Customer.objects.get(pk=1)
+            customer.name = form.cleaned_data['name']
+            customer.surname = form.cleaned_data['surname']
+            customer.bio = form.cleaned_data['bio']
+            customer.contacts = form.cleaned_data['contacts']
+            customer.save()
+            return HttpResponseRedirect('/edit/') # Redirect after POST
+    else:
+        customer = Customer.objects.get(pk=1)
+        form = CustomerForm(instance=customer) # An unbound form
+
+    c['form'] = form
+    return render_to_response('edit.html', c, 
+                              context_instance=RequestContext(request))
+
+def logout_view(request):
+    logout(request)
+    return contact_view(request)
