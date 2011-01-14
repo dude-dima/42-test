@@ -5,7 +5,8 @@ class Customer(models.Model):
     name = models.CharField(null=True, max_length=15)
     surname = models.CharField(null=True, max_length=15)
     contacts = models.CharField(null=True, max_length=15)
-    bio = models.TextField(null=True, max_length=250)    
+    bio = models.TextField(null=True, max_length=250)
+    birth_date = models.DateField(null=True, blank=True)
     
     def get_data(self):
         return [(field.name, field.value_to_string(self))\
