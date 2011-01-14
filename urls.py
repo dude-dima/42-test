@@ -11,6 +11,10 @@ urlpatterns = patterns('',
     (r'^css/(?P<path>.*)$', 'django.views.static.serve', 
         {'document_root': os.path.join(os.path.dirname(__file__), 
                                        "http/css").replace('\\','/') }),
+    
+    (r'^js/(?P<path>.*)$', 'django.views.static.serve', 
+        {'document_root': os.path.join(os.path.dirname(__file__), 
+                                       "http/js").replace('\\','/') }),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

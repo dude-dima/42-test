@@ -1,7 +1,7 @@
-from django.forms import ModelForm
+from django import forms
 from models import Customer
 
+class CustomerForm(forms.ModelForm):
 
-class CustomerForm(ModelForm):
     class Meta:
         model = Customer

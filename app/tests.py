@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
-from models import Customer
+import tools
 
 class SimpleTest(TestCase):
     # Load a fixture
@@ -13,7 +14,7 @@ class SimpleTest(TestCase):
         self.assertTemplateUsed(response, 'contacts.html', msg_prefix='')
         # Get an user
         user = response.context['customer']
-        u = Customer.objects.get(pk=1)
+        u = tools.get_default_customer()
         # Check model parameters
         self.failUnlessEqual(u.name, user.name)
         self.failUnlessEqual(u.surname, user.surname)
@@ -35,5 +36,35 @@ class SimpleTest(TestCase):
         
         # A response
         response = self.client.get('/edit/')
-        # Check response status
+        # Check response status before auth
         self.failUnlessEqual(response.status_code, 302)
+        
+        #Authorization
+        User.objects.create_user( username = "test",
+                                  email = "test@test.com",
+                                  password = "test")
+        self.failUnlessEqual(self.client.login(username = "test",
+                                               password = "test"), True)
+        # A response
+        response = self.client.get('/edit/')
+        # Check response status after auth
+        self.failUnlessEqual(response.status_code, 200)
+        
+        # Customer data before changing (commiting form)
+        data = ['Dmitry', 'Razumov', "Some bio", "380500000000", "1983-07-12"]
+        # Following data should be in the reponse content
+        for item in data:
+            self.failUnlessEqual(item in response.content, True)
+        ctx = {'name':'test1', 'surname':'test2', 'contacts':'test3',
+               'bio':'test4', 'birth_date':'1901-01-01'}
+        # Emulating form submitting
+        self.client.post('/edit/', ctx)
+        response = self.client.get('/edit/')
+        # Check response status
+        self.failUnlessEqual(response.status_code, 200)
+        # Customer data before changing (commiting form)
+        data = ['test1', 'test2', "test3", "test4", "1901-01-01"]
+        # Following data should be in the reponse content
+        for item in data:
+            self.failUnlessEqual(item in response.content, True)
+        
