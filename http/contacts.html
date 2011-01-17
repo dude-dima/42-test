@@ -1,4 +1,4 @@
-{% include "header.html" %}
+{% extends "main.html" %}
 {% block "content" %}
 	{% include "menu.html" %}
 	{% if error %}
@@ -14,4 +14,3 @@
 		No data found.
 	{% endif %}
 {% endblock %}
-{% include "footer.html" %}
