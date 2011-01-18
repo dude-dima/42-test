@@ -75,8 +75,10 @@ class SimpleTest(TestCase):
         # Check if fields was reversed
         self.failIf(response.content.index('id="id_name"') <
                     response.content.index('id="id_bio"'))
-<<<<<<< HEAD
-        #print items.index('name'), items.index('bio')
-=======
->>>>>>> t7_forms_model_extra
+        
+        # A response
+        response = self.client.get('/tag/')
+        # Check response status after auth
+        self.failUnlessEqual(response.status_code, 200)
+
         
