@@ -1,13 +1,8 @@
-{% include "header.html" %}
-{% block "head" %}
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/jquery.form.js"></script>
-	<script type="text/javascript" src="/js/main.js"></script>
-{% endblock %}
+{% extends "main.html" %}
 {% block "content" %}
 	{% include "menu.html" %}
 	<form id="myForm" action="/edit/" method="post">
-		{{ form.media }}
+		{{ form.media }}	
 		{% csrf_token %}
 		<table>
 			{{ form.as_table }}
@@ -17,4 +12,3 @@
 		<input id="id_button" type="submit" value="Сохранить" />
 	</form>
 {% endblock %}
-{% include "footer.html" %}
