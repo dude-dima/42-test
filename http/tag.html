@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% block "content" %}
+	{% include "menu.html" %}
+	{% if error %}
+		<div class='error'>{{ error }}</div>
+	{% endif %}
+	{% load mytag %}
+	{% edit_link user %}
+{% endblock %}
