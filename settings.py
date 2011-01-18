@@ -77,7 +77,7 @@ MIDDLEWARE_CLASSES = (
     'app.middleware.RequestHandler',
 )
 
-ROOT_URLCONF = 'Test42.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "http").replace('\\','/'),
