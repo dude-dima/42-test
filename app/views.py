@@ -1,20 +1,20 @@
 from django.template import Template, Context, RequestContext
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from models import User, Request
+from models import Customer, Request
 
 def contact_view(request):
-    ### Just for storing data into database
-    #u = User()
-    #u.name = "Dmitry"
-    #u.surname = "Razumov"
-    #u.bio = "Some bio"
-    #u.contacts = "380500000000"
-    #u.save()
     try:
-        u = User.objects.get(pk=1)
+        u = Customer.objects.get(pk=1)
     except:
-        u = None
+        ### Just for storing data into database
+        u = Customer()
+        u.name = "Dmitry"
+        u.surname = "Razumov"
+        u.bio = "Some bio"
+        u.contacts = "380500000000"
+        u.save()
+
     return render_to_response('contacts.html', {'user':u}, \
                               context_instance=RequestContext(request))
 
