@@ -6,7 +6,7 @@ import os
 #admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'', include('Test42.app.urls')),
+    (r'', include('app.urls')),
     
     (r'^css/(?P<path>.*)$', 'django.views.static.serve', 
         {'document_root': os.path.join(os.path.dirname(__file__), 
