@@ -76,3 +76,8 @@ class SimpleTest(TestCase):
         self.failIf(response.content.index('id="id_name"') <
                     response.content.index('id="id_bio"'))
         
+        # A response
+        response = self.client.get('/tag/')
+        # Check response status after auth
+        self.failUnlessEqual(response.status_code, 200)
+        
