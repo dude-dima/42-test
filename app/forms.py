@@ -2,6 +2,7 @@ from django import forms
 from models import Customer
 from widgets import JQCalendarWidget
 
+
 class CustomerForm(forms.ModelForm):
     
     def __init__(self, *args, **kw):

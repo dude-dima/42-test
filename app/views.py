@@ -7,10 +7,11 @@ from models import Request
 from forms import CustomerForm
 import tools
 
-def contact_view(request):    
-    c = tools.get_default_context(request, 'm_contacts')    
+
+def contact_view(request):
+    c = tools.get_default_context(request, 'm_contacts')
     c['customer'] = tools.get_default_customer()
-    return render_to_response('contacts.html', c, 
+    return render_to_response('contacts.html', c,
                               context_instance=RequestContext(request))
 
 def request_view(request):
@@ -44,7 +45,7 @@ def edit_view(request):
         form = CustomerForm(instance=customer) # An unbound form
 
     c['form'] = form
-    return render_to_response('edit.html', c, 
+    return render_to_response('edit.html', c,
                               context_instance=RequestContext(request))
 
 def logout_view(request):
