@@ -1,5 +1,6 @@
 from django import forms
 
+
 class JQCalendarWidget(forms.DateInput):
     
     class Media:

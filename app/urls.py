@@ -10,8 +10,8 @@ urlpatterns = patterns('',
     (r'^main/$', views.contact_view),
     (r'^requests/$', views.request_view),
     (r'^edit/$', views.edit_view),
-    
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
+
+    # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
