@@ -6,9 +6,10 @@ from django.contrib.auth.decorators import login_required
 from models import Customer, Request
 from forms import CustomerForm
 
+
 def contact_view(request):
     ### Just for storing data into database
-    #u = User()
+    #u = Customer()
     #u.name = "Dmitry"
     #u.surname = "Razumov"
     #u.bio = "Some bio"
@@ -21,7 +22,7 @@ def contact_view(request):
         c['customer'] = Customer.objects.get(pk=1)
     except:
         pass
-    return render_to_response('contacts.html', c, 
+    return render_to_response('contacts.html', c,
                               context_instance=RequestContext(request))
 
 def request_view(request):
@@ -55,7 +56,7 @@ def edit_view(request):
         form = CustomerForm(instance=customer) # An unbound form
 
     c['form'] = form
-    return render_to_response('edit.html', c, 
+    return render_to_response('edit.html', c,
                               context_instance=RequestContext(request))
 
 def logout_view(request):
