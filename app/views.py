@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 from models import Customer, Request
 
 
-def contact_view(request):    
+def contact_view(request):
     try:
         u = Customer.objects.get(pk=1)
     except:
@@ -15,7 +15,7 @@ def contact_view(request):
         u.bio = "Some bio"
         u.contacts = "380500000000"
         u.save()
-    return render_to_response('contacts.html', {'user':u})
+    return render_to_response('contacts.html', {'user': u})
 
 def request_view(request):
     try:

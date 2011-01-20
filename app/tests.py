@@ -1,6 +1,7 @@
 from django.test import TestCase
 from models import User
 
+
 class SimpleTest(TestCase):
     # Load a fixture
     fixtures = ['init.xml']
@@ -26,4 +27,3 @@ class SimpleTest(TestCase):
         self.failUnlessEqual(response.status_code, 200)
         # Check if used right template
         self.assertTemplateUsed(response, 'requests.html', msg_prefix='')
-        
