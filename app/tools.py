@@ -1,5 +1,6 @@
 from models import Customer
 
+
 def get_default_context(request, menu_item=''):
     c = {}
     c['user'] = request.user
