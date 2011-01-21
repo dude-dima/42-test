@@ -3,7 +3,7 @@ import views
 
 urlpatterns = patterns('',
     # Example:
-    (r'^main/$', views.contact_view),
+    (r'^$', views.contact_view),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
