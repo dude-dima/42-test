@@ -13,7 +13,3 @@ class Customer(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    def get_data(self):
-        return [(field.name, field.value_to_string(self)) \
-                for field in self._meta.fields]
