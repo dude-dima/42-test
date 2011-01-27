@@ -3,16 +3,18 @@
 <title>Contacts</title>
 </head>
 <body>
-{% block content %}
-	{% if user %}
-		{% for name, value in user.get_data %}
-			{% if value %}
-				{{ name }} --> {{ value }} <br/>
-			{% endif %}
-		{% endfor %}
-	{% else %}
-		No data found.
-	{% endif %}
-{% endblock%}
+<h1>42 Coffee Cups Test Assignment</h1>
+{% if customer %}
+			<table>
+				<tr><td>Name: </td><td>{{ customer.name }}</td></tr>
+				<tr><td>Surname: </td><td>{{ customer.surname }}</td></tr>
+				<tr><td>Biography: </td><td>{{ customer.bio }}</td></tr>
+				<tr><td>Contacts: </td><td>{{ customer.contacts }}</td></tr>
+			</table>
+{% else %}
+	No data found.
+{% endif %}
+<br/>
+<a href="/requests">Look at requests</a>
 </body>
 </html>
