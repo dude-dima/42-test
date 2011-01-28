@@ -15,6 +15,8 @@
 	No data found.
 {% endif %}
 <br/>
-<a href="/requests">Look at requests</a>
+Used tempalte context processors: {{ settings.TEMPLATE_CONTEXT_PROCESSORS }}
+<br/>
+<a href="{% url requests %}">Look at requests</a>
 </body>
 </html>

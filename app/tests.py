@@ -34,4 +34,4 @@ class SimpleTest(TestCase):
         # Check if context contains project settings
         print response.context
         self.failUnlessEqual(response.context['settings'].SECRET_KEY, \
-                             '160-wua)ph_%rb16rrypkm8%%^)oj^rggnts#e8)8$c0(@httn')
+             '160-wua)ph_%rb16rrypkm8%%^)oj^rggnts#e8)8$c0(@httn')
