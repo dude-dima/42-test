@@ -2,20 +2,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <title>Test 42</title>
-{% block "head" %} {% endblock %}
 </head>
 <body>
 <table id="heading">
 	<tr>
 		<td valign=top>
-		<div class="capt">Test 42</div>
+		<div class="capt">42 Coffee Cups Test Assignment {% if settings.DEBUG %}(Debug){% endif %}</div>
 		</td>
 		<td valign=top width="200" align="right">
 			{% if user.is_authenticated %}
 				Вы вошли как:  {{ user.username }} <br/>
-				<a href="/logout/">Выйти</a>
+				<a href="{% url logout %}">Выйти</a>
 			{% endif %}
 			<br>
 		</td>
