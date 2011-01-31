@@ -27,9 +27,9 @@ def request_view(request):
 @login_required
 def edit_view(request):
     c = tools.get_default_context(request, 'm_edit')
-    if request.method == 'POST': # If the form has been submitted...
-        form = CustomerForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
+    if request.method == 'POST':  # If the form has been submitted...
+        form = CustomerForm(request.POST)  # A form bound to the POST data
+        if form.is_valid():  # All validation rules pass
             # Process the data in form.cleaned_data
             customer = Customer.objects.all()[0]
             customer.name = form.cleaned_data['name']
@@ -37,6 +37,7 @@ def edit_view(request):
             customer.bio = form.cleaned_data['bio']
             customer.contacts = form.cleaned_data['contacts']
             customer.save()
+            return HttpResponseRedirect('/')
     else:
         customer = Customer.objects.all()[0]
         form = CustomerForm(instance=customer) # An unbound form
