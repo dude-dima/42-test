@@ -1,17 +1,17 @@
-{% include "header.html" %}
+{% extends "main.html" %}
 {% block "content" %}
 	{% include "menu.html" %}
 	{% if error %}
 		<div class='error'>{{ error }}</div>
 	{% endif %}
 	{% if customer %}
-		{% for name, value in customer.get_data %}
-			{% if value %}
-				{{ name }} --> {{ value }} <br/>
-			{% endif %}
-		{% endfor %}
+		<table>
+			<tr><td>Name: </td><td>{{ customer.name }}</td></tr>
+			<tr><td>Surname: </td><td>{{ customer.surname }}</td></tr>
+			<tr><td>Biography: </td><td>{{ customer.bio }}</td></tr>
+			<tr><td>Contacts: </td><td>{{ customer.contacts }}</td></tr>
+		</table>
 	{% else %}
 		No data found.
 	{% endif %}
 {% endblock %}
-{% include "footer.html" %}
