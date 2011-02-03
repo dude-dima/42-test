@@ -97,3 +97,11 @@ class SimpleTest(TestCase):
         response = self.client.get('/tag/')
         # Check response status after auth
         self.failUnlessEqual(response.status_code, 200)
+
+    def test_modelsinfo(self):
+        temp = sys.stderr
+        sys.stderr = stderr = StringIO()
+        call_command('modelsinfo')
+        sys.stderr = temp
+        test_string = "<class 'django.contrib.auth.models.User'> contains 1 objects"
+        self.assertTrue(test_string in stderr.getvalue())
