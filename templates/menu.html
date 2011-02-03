@@ -1,9 +1,9 @@
 <table border="0" class="menu">
 <tr>
-<td width="110" class="menu-item {{ m_contacts }}"><a class="simple" href="/main/">Контакты</a></td>
-<td width="110" class="menu-item {{ m_requests }}"><a class="simple" href="/requests/">10 запросов</a></td>
-<td width="110" class="menu-item {{ m_edit }}"><a class="simple" href="/edit/">Редактировать</a></td>
-<td width="110" class="menu-item {{ m_tag }}"><a class="simple" href="/tag/">Тэг</a></td>
+<td width="110" class="menu-item {{ m_contacts }}"><a class="simple" href="{% url contact %}">Контакты</a></td>
+<td width="110" class="menu-item {{ m_requests }}"><a class="simple" href="{% url requests %}">10 запросов</a></td>
+<td width="110" class="menu-item {{ m_edit }}"><a class="simple" href="{% url edit %}">Редактировать</a></td>
+<td width="110" class="menu-item {{ m_tag }}"><a class="simple" href="{% url tag %}">Тэг</a></td>
 <td></td>
 </tr>
 </table>
