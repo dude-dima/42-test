@@ -17,10 +17,7 @@ def contact_view(request):
 
 def request_view(request):
     c = tools.get_default_context(request, 'm_requests')
-    try:
-        c['requests'] = Request.objects.all()[:10]
-    except:
-        pass
+    c['requests'] = Request.objects.order_by('-priority')[:10]
     return render_to_response('requests.html', c,
                               context_instance=RequestContext(request))
 

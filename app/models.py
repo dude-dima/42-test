@@ -21,6 +21,7 @@ class Request(models.Model):
     """Request"""
     date = models.DateTimeField(auto_now=True)
     request = models.TextField()
+    priority = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'requests'
