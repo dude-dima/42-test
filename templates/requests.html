@@ -6,7 +6,9 @@
 	{% endif %}
 	{% if requests %}
 		{% for request in requests %}
-				{{ request.date }} <br/> {{ request.request }} <br/><br/><br/>
+				{{ request.date }} <br/>
+				Priority: {{ request.priority }} <br/>
+				{{ request.request }} <br/><br/><br/>
 		{% endfor %}
 	{% else %}
 		No requests found.

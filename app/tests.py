@@ -47,7 +47,7 @@ class SimpleTest(TestCase):
         # Check response status before auth
         self.failUnlessEqual(response.status_code, 302)
 
-        #Authorization
+        # Authorization
         User.objects.create_user(username="test",
                                  email="test@test.com",
                                  password="test")
@@ -125,3 +125,19 @@ class SimpleTest(TestCase):
         customer.delete()
         log = LogModel.objects.order_by('date')[0]
         self.assertTrue(log.action, "Deleted")
+
+    def test_priority(self):
+        # Authorization
+        User.objects.create_user(username="test",
+                                 email="test@test.com",
+                                 password="test")
+        self.failUnlessEqual(self.client.login(username="test",
+                                               password="test"), True)
+        # Priority 1 request
+        self.client.get('/')
+        self.client.logout()
+        # Priority 0 request
+        self.client.get('/')
+        response = self.client.get('/requests/')
+        self.failIf(response.content.index('Priority: 0') <
+                    response.content.index('Priority: 1'))
