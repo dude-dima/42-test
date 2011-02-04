@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.core.management import call_command
 import sys
 from StringIO import StringIO
-from models import Customer
+from models import Customer, LogModel
 
 
 class SimpleTest(TestCase):
@@ -106,3 +106,22 @@ class SimpleTest(TestCase):
         test_string = "<class 'django.contrib.auth.models.User'> " +\
                       "contains 1 objects"
         self.assertTrue(test_string in stderr.getvalue())
+
+    def test_signals(self):
+        # Testing "Changed" option
+        customer = Customer.objects.all()[0]
+        customer.name = "Test"
+        customer.save()
+        log = LogModel.objects.order_by('date')[0]
+        self.assertTrue(log.action, "Changed")
+        # Testing "Created" option
+        customer = Customer.objects.create()
+        customer.name = "TempTest"
+        customer.save()
+        log = LogModel.objects.order_by('date')[0]
+        self.assertTrue(log.action, "Created")
+        # Testing "Deleted" option
+        customer = Customer.objects.get(name='TempTest')
+        customer.delete()
+        log = LogModel.objects.order_by('date')[0]
+        self.assertTrue(log.action, "Deleted")
