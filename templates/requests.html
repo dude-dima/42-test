@@ -4,11 +4,32 @@
 	{% if error %}
 		<div class='error'>{{ error }}</div>
 	{% endif %}
+		<form action="" method="POST">
+			{% csrf_token %}
+			<table border="0">
+				<tr>
+					<td>Priority: </td>
+					<td>
+						<select name="priority" id="priority">
+							<option value="0">Low</option>
+							<option value="1" {% if high %}selected{% endif %}>High</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" value="Choose">
+					</td>
+				</tr>
+			</table>
+		</form>
+		<br/>
+		<div class="hr"></div>
 	{% if requests %}
 		{% for request in requests %}
 				{{ request.date }} <br/>
 				Priority: {{ request.priority }} <br/>
-				{{ request.request }} <br/><br/><br/>
+				{{ request.request }} <br/><br/>
 		{% endfor %}
 	{% else %}
 		No requests found.
