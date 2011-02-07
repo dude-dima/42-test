@@ -143,11 +143,11 @@ class SimpleTest(TestCase):
         ctx = {'priority': '1'}
         # Emulating form submitting
         response = self.client.post('/requests/', ctx)
-        self.failIf(response.content.index('Priority: 0') <
-                    response.content.index('Priority: 1'))
+        self.failIf(response.content.index('0</div>') <
+                    response.content.index('1</div>'))
         # Context
         ctx = {'priority': '0'}
         # Emulating form submitting
         response = self.client.post('/requests/', ctx)
-        self.failIf(response.content.index('Priority: 0') >
-                    response.content.index('Priority: 1'))
+        self.failIf(response.content.index('0</div>') >
+                    response.content.index('1</div>'))
