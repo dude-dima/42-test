@@ -64,6 +64,7 @@ class SimpleTest(TestCase):
         # Following data should be in the reponse content
         for item in data:
             self.failUnlessEqual(item in response.content, True)
+        # Context
         ctx = {'name': 'test1', 'surname': 'test2', 'contacts': 'test3',
                'bio': 'test4', 'birth_date': '1901-01-01'}
         # Emulating form submitting
@@ -138,6 +139,15 @@ class SimpleTest(TestCase):
         self.client.logout()
         # Priority 0 request
         self.client.get('/')
-        response = self.client.get('/requests/')
+        # Context
+        ctx = {'priority': '1'}
+        # Emulating form submitting
+        response = self.client.post('/requests/', ctx)
         self.failIf(response.content.index('Priority: 0') <
+                    response.content.index('Priority: 1'))
+        # Context
+        ctx = {'priority': '0'}
+        # Emulating form submitting
+        response = self.client.post('/requests/', ctx)
+        self.failIf(response.content.index('Priority: 0') >
                     response.content.index('Priority: 1'))

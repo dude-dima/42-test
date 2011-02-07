@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.signals import post_save, post_delete
 
 
 class Customer(models.Model):
@@ -35,18 +34,3 @@ class LogModel(models.Model):
 
     class Meta:
         db_table = 'model_logs'
-
-
-def log(sender, **kwargs):
-    if sender not in (Request, Customer):
-        return
-    log_model = LogModel(model=str(sender))
-    if 'created' in kwargs:
-        log_model.action = ('Created', 'Changed')[int(kwargs['created'])]
-    else:
-        log_model.action = "Deleted"
-    log_model.save()
-
-
-post_save.connect(log)
-post_delete.connect(log)

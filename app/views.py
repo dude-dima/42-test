@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from models import Customer, Request
 from forms import CustomerForm
+import listeners
 import tools
 
 
@@ -17,7 +18,11 @@ def contact_view(request):
 
 def request_view(request):
     c = tools.get_default_context(request, 'm_requests')
-    c['requests'] = Request.objects.order_by('-priority')[:10]
+    if int(request.POST.get('priority', 0)):
+        c['high'] = True
+        c['requests'] = Request.objects.order_by('-priority')[:10]
+    else:
+        c['requests'] = Request.objects.order_by('priority')[:10]
     return render_to_response('requests.html', c,
                               context_instance=RequestContext(request))
 
