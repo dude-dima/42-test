@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.core.management import call_command
 import sys
 from StringIO import StringIO
-from models import Customer, LogModel
+from app.models import Customer, LogModel
 
 
 class SimpleTest(TestCase):

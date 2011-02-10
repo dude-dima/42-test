@@ -3,10 +3,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from models import Customer, Request
-from forms import CustomerForm
-import listeners
-import tools
+from app.models import Customer, Request
+from app.forms import CustomerForm
+from app import listeners
+from app import tools
 
 
 def contact_view(request):
@@ -38,16 +38,10 @@ def request_view(request):
 def edit_view(request):
     c = tools.get_default_context(request, 'm_edit')
     if request.method == 'POST':  # If the form has been submitted...
-        form = CustomerForm(request.POST)  # A form bound to the POST data
-        if form.is_valid():  # All validation rules pass
-            # Process the data in form.cleaned_data
-            customer = Customer.objects.all()[0]
-            customer.name = form.cleaned_data['name']
-            customer.surname = form.cleaned_data['surname']
-            customer.bio = form.cleaned_data['bio']
-            customer.contacts = form.cleaned_data['contacts']
-            customer.birth_date = form.cleaned_data['birth_date']
-            customer.save()
+        # A form bound to the POST data and instance
+        form = CustomerForm(request.POST, instance=Customer.objects.all()[0])
+        if form.is_valid():
+            form.save()  # Saving form to model
             # Is that Ajax?
             if request.is_ajax():
                 return HttpResponse("Data stored successfuly!")

@@ -1,6 +1,8 @@
 {% extends "main.html" %}
+{% block "head" %}
+	<script type="text/javascript" src="/js/priority.js"></script>
+{% endblock %}
 {% block "content" %}
-	{% include "menu.html" %}
 	{% if error %}
 		<div class='error'>{{ error }}</div>
 	{% endif %}
@@ -28,7 +30,7 @@
 	{% if requests %}
 		{% for request in requests %}
 				{{ request.date }} <br/>
-				Priority: <div id="{{ request.id }}">{{ request.priority }}</div>
+				Priority:<div id="{{ request.id }}">{{ request.priority }}</div>
 				<input type="button" value="Increment" onclick="incPriority({{ request.id }})"/><br/>
 				{{ request.request }}			
 				<br/><br/>

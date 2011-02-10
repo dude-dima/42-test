@@ -1,4 +1,4 @@
-from models import Request
+from app.models import Request
 
 
 class RequestHandler:

@@ -1,6 +1,6 @@
 from django import forms
-from models import Customer
-from widgets import JQCalendarWidget
+from app.models import Customer
+from app.widgets import JQCalendarWidget
 
 
 class CustomerForm(forms.ModelForm):

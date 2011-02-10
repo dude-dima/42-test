@@ -1,4 +1,29 @@
-{% include "header.html" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{% block "head" %}
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<title>Test 42</title>
+</head>
+<body>
+<table id="heading">
+	<tr>
+		<td valign=top>
+		<div class="capt">42 Coffee Cups Test Assignment {% if settings.DEBUG %}(Debug){% endif %}</div>
+		</td>
+		<td valign=top width="200" align="right">
+			{% if user.is_authenticated %}
+				Вы вошли как:  {{ user.username }} <br/>
+				<a href="{% url logout %}">Выйти</a>
+			{% endif %}
+			<br>
+		</td>
+	</tr>
+</table>
+<div class="hr"></div>
+{% include "menu.html" %}
 {% block "content" %}
 {% endblock %}
 {% include "footer.html" %}
