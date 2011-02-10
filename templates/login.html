@@ -1,6 +1,5 @@
-{% include "header.html" %}
+{% extends "main.html" %}
 {% block "content" %}
-	{% include "menu.html" %}
 	{% if form.errors %}
 		<div class='error'>Неверное имя пользователя или пароль!</div>
 	{% endif %}
@@ -19,6 +18,4 @@
 		<input type="submit" value="Войти" />
 		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
-
 {% endblock %}
-{% include "footer.html" %}
